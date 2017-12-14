@@ -309,35 +309,4 @@
         </profile>
     </profiles>
 
-    <repositories>
-        <repository>
-            <id>QunarNexus</id>
-            <url>http://svn.corp.qunar.com:8081/nexus/content/groups/public</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-                <checksumPolicy>fail</checksumPolicy>
-            </snapshots>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>QunarNexus</id>
-            <url>http://svn.corp.qunar.com:8081/nexus/content/groups/public</url>
-            <releases>
-                <enabled>true</enabled>
-                <checksumPolicy>warn</checksumPolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <checksumPolicy>fail</checksumPolicy>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
 </project>

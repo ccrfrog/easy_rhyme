@@ -8,7 +8,7 @@
     <description>Spring common config</description>
     <context:annotation-config />
 
-    <context:component-scan base-package="com.qunar.ziqiang"/>
+    <context:component-scan base-package=""/>
 
     <!-- 加载其他xml文件 -->
     <import resource="applicationContext-web.xml"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qunar.ziqiang.webapp.dao.NormOrderInfoMapper">
+<mapper namespace="">
 
     <sql id="paramField">
         id,
@@ -94,7 +94,6 @@
         </foreach>
     </delete>
     
-    <!-- http://pmo.corp.qunar.com/browse/DZS-4317 -->
     <select id="selectTotalBetween" resultType="int">
         select count(id) from norm_order_info 
         where update_time &gt;= #{startTime} and update_time &lt;= #{endTime}
@@ -115,7 +114,6 @@
         update norm_order_info set order_detail = #{orderDetail}, update_time = #{updateTime}
         where order_num = #{orderNum} and update_time &lt;= #{updateTime}
     </update>
-    <!-- end of http://pmo.corp.qunar.com/browse/DZS-4317 -->
     
 
 </mapper>

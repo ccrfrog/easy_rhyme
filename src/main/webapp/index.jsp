@@ -8,8 +8,6 @@
 </head>
 <body>
 index.jsp
-this page shows that ziqiang.deng has start up
-
-
+this page shows that xxx has start up
 </body>
 </html>
