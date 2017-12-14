@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+            <bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/xml;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+    </bean>
+
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- one of the properties available; the maximum file size in bytes 50M -->
+        <property name="maxUploadSize" value="52428800" />
+        <property name="defaultEncoding" value="UTF-8"></property>
+    </bean>
+
+    <!-- json视图解析器 -->
+    <bean id="jsonView"
+          class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+    </bean>
+
+    <!-- xml视图解析器 -->
+    <bean id="xmlView" class="org.springframework.web.servlet.view.xml.MarshallingView">
+        <property name="marshaller" ref="jaxbMarshaller"/>
+    </bean>
+
+    <!-- object与xml的jaxb互转的实现 -->
+    <bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <!-- 指定jaxb的模型包路径-->
+        <property name="packagesToScan" value=""/>
+    </bean>
+
+</beans>

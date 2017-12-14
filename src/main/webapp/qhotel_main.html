@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>qhotel首页_bootstrap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Bootstrap v3 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+    <!-- jQuery plugins -->
+    <!-- bootstrapValidator -->
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css"/>
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
+    
+</head>
+<body>
+<!-- =========================顶部导航================================ -->
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">qhotel_bootstrap版</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">批量导入<span class="caret"></span></a>
+              <ul role="menu" class="dropdown-menu">
+                <li><a href="#">执行导入</a></li>
+                <li><a href="#">查看导入历史</a></li>
+                <li class="divider"></li>
+                <li><a href="#">全部发布</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">酒店编辑</a>
+            </li>
+            <li class="dropdown">
+              <a data-toggle="modal" class="btn" data-target="#add_new_hotel_modal">新增酒店</a>
+              <!-- 弹出modal对话框 -->
+            </li>
+        </ul>
+    </div>
+    <!-- v2 below -->
+</nav>
+
+<!-- =========================新增酒店modal================================ -->
+    <div id="add_new_hotel_modal" class="modal fade" role="dialog" aria-labelledby="add_new_hotel_modal_title">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="add_new_hotel_modal_title">新增酒店</h4>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body&hellip;</p>
+                    <div class="bs-example bs-example-tabs">
+                        <ul role="tablist" class="nav nav-tabs"
+                            id="add_new_hotel_modal_tab">
+                            <li class="active"><a data-toggle="tab" role="tab" href="#add_new_hotel_modal_tab_basic">基本信息</a></li>
+                            <li class=""><a data-toggle="tab" role="tab" href="#add_new_hotel_modal_tab_extend">扩展信息</a></li>
+                        </ul>
+                        
+                        <form id="add_new_hotel_modal_form" class="form-horizontal" role="form">
+                        <div class="tab-content" id="add_new_hotel_modal_tab_content">
+                            <div id="add_new_hotel_modal_tab_basic" class="tab-pane fade active in">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="inputCity">所属城市</label>
+                                    <div class="col-sm-5">
+                                        <input class="form-control" type="text" id="inputCity" placeholder="可输入中英文字符和数字，不包含&%等特殊符号"
+                                        name="inputCity" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="inputHotelName">酒店名称</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="text" id="inputHotelName" placeholder="可输入中英文字符和数字，不包含&%等特殊符号"
+                                        name="inputHotelName" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="inputHotelAddress">酒店地址</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="text" id="inputHotelAddress" placeholder="可输入中文英文数字，不包含&%等特殊符号"
+                                        name="inputHotelAddress" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="add_new_hotel_modal_tab_extend" class="tab-pane fade">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="inputHotelName">酒店电话</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="text" id="inputHotelPhone" placeholder="可输入数字和减号-" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="add_new_hotel()">保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/qhotel_main.js" type="text/javascript"></script>
+    <script src="js/add_new_hotel.js" type="text/javascript"></script>
+</body>
+</html>
