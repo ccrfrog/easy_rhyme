@@ -7,10 +7,13 @@
 ### 任务分解
 
 #### 后端
-1. 编写 easy_rhyme pom.xml，配置 maven 仓库，使得不依赖私有仓库可以打包，
-直接copy algorithms 里的代码到 eash_rhyme 工程
+0. 整理所有声母，韵母表，从字典里的音节开始，去掉声母 对韵母去重，与 百度百科里的韵母表对比
 
-2. 引入 汉字转拼音包 jar algorithms， 中文分词包 ik
+http://xh.5156edu.com/pinyi.html
+
+1. 设计 数据库和存储方案
+
+
 
 
 
