@@ -55,7 +55,7 @@
     <!-- object与xml的jaxb互转的实现 -->
     <bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
         <!-- 指定jaxb的模型包路径-->
-        <property name="packagesToScan" value=""/>
+        <property name="packagesToScan" value="com.github.easyrhyme"/>
     </bean>
 
 </beans>
