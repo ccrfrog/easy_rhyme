@@ -28,9 +28,6 @@
     <!-- spring applicationContext配置 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-        <!-- 
-		<param-value>WEB-INF/application-web.xml</param-value>
-         -->
         <param-value>classpath*:spring/applicationContext.xml</param-value>
 	</context-param>
 	<listener>

@@ -19,7 +19,8 @@ import com.google.common.collect.Sets;
 public class GetRhymeFromOnlineSyllableTest {
 
     /**
-     * 
+     * http://xh.5156edu.com/pinyi.html
+     * 从400+ 音节得到 无重复的 韵母
      * */
     @Test
     public void test() {

@@ -12,9 +12,7 @@
 
     <!-- 加载其他xml文件 -->
     <import resource="applicationContext-web.xml"/>
-    <!-- 
     <import resource="applicationContext-db.xml"/>
-     -->
     <import resource="applicationContext-aop.xml"/>
     
     
