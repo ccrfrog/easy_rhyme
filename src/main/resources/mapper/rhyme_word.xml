@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.easyrhyme.dao.RhymeWordDao">
+
+    <sql id="insertColumns">
+        lexeme, freq, score, pos, language, first, second, third, fourth, fifth, sixth, seventh
+    </sql>
+
+    <insert id="upsert" >
+        INSERT INTO ${tableName} (<include refid="insertColumns"/>)
+            VALUES (#{bean.lexeme}, #{bean.freq}, #{bean.score}, #{bean.pos}, #{bean.language}, #{bean.first}, 
+                    #{bean.second}, #{bean.third}, #{bean.fourth}, #{bean.fifth}, #{bean.sixth}, #{bean.seventh})
+            ON DUPLICATE KEY UPDATE freq = freq + 1;
+    </insert>
+
+</mapper>
+

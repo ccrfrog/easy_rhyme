@@ -1,8 +1,3 @@
-/*
- * $Id$
- *
- * Copyright (c) 2012 Qunar.com. All Rights Reserved.
- */
 package com.github.easyrhyme.test.data;
 
 import java.io.BufferedWriter;
