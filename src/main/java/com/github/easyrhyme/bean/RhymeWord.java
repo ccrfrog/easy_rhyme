@@ -2,6 +2,8 @@ package com.github.easyrhyme.bean;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 /**
  * 与表 rhyme_template 记录对应
@@ -190,6 +192,10 @@ public class RhymeWord {
         this.score = score;
     }
     
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
+    
     public static RhymeWordBuilder builder(String lexeme, String first) {
         return new RhymeWordBuilder(lexeme, first);
     }
@@ -280,6 +286,15 @@ public class RhymeWord {
             return this;
         }
         
+        public RhymeWordBuilder sixth(String sixth) {
+            this.sixth = sixth;
+            return this;
+        }
+        
+        public RhymeWordBuilder seventh(String seventh) {
+            this.seventh = seventh;
+            return this;
+        }
     }
     
 }

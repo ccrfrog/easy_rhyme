@@ -148,8 +148,14 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.5</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.1</version>
+        </dependency>
 
-            <!-- apache commons io -->
+        <!-- apache commons io -->
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
