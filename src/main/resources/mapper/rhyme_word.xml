@@ -5,13 +5,26 @@
     <sql id="insertColumns">
         lexeme, freq, score, pos, language, first, second, third, fourth, fifth, sixth, seventh
     </sql>
+    
+    <sql id="selectColumns">
+        id, lexeme, freq, score, pos, language, first, second, third, fourth, fifth, sixth, seventh, create_time, update_time
+    </sql>
 
     <insert id="upsert" >
-        INSERT INTO ${tableName} (<include refid="insertColumns"/>)
+        INSERT INTO rhyme_word (<include refid="insertColumns"/>)
             VALUES (#{bean.lexeme}, #{bean.freq}, #{bean.score}, #{bean.pos}, #{bean.language}, #{bean.first}, 
                     #{bean.second}, #{bean.third}, #{bean.fourth}, #{bean.fifth}, #{bean.sixth}, #{bean.seventh})
             ON DUPLICATE KEY UPDATE freq = freq + 1;
     </insert>
+    
+    <select id="querySingle" resultType="RhymeWord">
+        select <include refid="selectColumns"/>
+        from rhyme_word where first in
+            <foreach collection="firsts" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        order by freq desc, id limit #{limit} offset #{offset};
+    </select>
 
 </mapper>
 

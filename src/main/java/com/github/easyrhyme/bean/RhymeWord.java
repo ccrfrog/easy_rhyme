@@ -40,6 +40,7 @@ public class RhymeWord {
     
     private Date updateTime;
 
+    public RhymeWord() {}
     
     public Long getId() {
         return id;

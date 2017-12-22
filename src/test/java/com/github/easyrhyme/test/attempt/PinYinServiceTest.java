@@ -15,7 +15,7 @@ public class PinYinServiceTest {
 
     @Test
     public void test() throws PinyinException {
-        System.out.println(PinyinHelper.convertToPinyinString("携程旅行网 押韵 查询app 核武器 歌舞伎 寒武纪 大十烂儿", ",", PinyinFormat.WITHOUT_TONE));
+        System.out.println(PinyinHelper.convertToPinyinString("绝学 good job", ",", PinyinFormat.WITHOUT_TONE));
         
     }
 

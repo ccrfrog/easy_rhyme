@@ -87,4 +87,19 @@ public class RhymeWordUtils {
         return vowels;
     }
     
+    public static String getVowel(String py) {
+        String vo = StringUtils.EMPTY;
+        for (String consonant : ALL_CONSONANT) {
+            if (!py.startsWith(consonant)) {
+                continue;
+            }
+            vo = StringUtils.replaceFirst(py, consonant, "");
+            return vo;
+        }
+        if (StringUtils.isBlank(vo)) {
+            return py;
+        }
+        return vo;
+    }
+    
 }

@@ -1,6 +1,8 @@
 package com.github.easyrhyme.dao;
 
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +15,14 @@ public interface RhymeWordDao {
      * upsert 插入一条记录，当 与 uniq_lexeme 约束冲突时 更新 freq 值 freq += 1
      * */
     public int upsert(@Param("bean") RhymeWord word, @Param("tableName") String tableName);
+
+    /**
+     * 单韵查询
+     * */
+    public List<RhymeWord> querySingle(@Param("firsts") List<String> firsts, 
+            @Param("limit") int limit, @Param("offset") int offset);
     
     
-//    public RhymeWord query
+    
+    
 }

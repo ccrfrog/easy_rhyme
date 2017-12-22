@@ -54,7 +54,7 @@ public class WordSegTest {
         // 获取Lucene的TokenStream对象
         TokenStream ts = null;
         ts = analyzer.tokenStream("myfield",
-                new StringReader("邓自强和李雪娟打算开发一个中文押韵查询app，邓自强是该项目的owner，月入三千不是梦"));
+                new StringReader("菁菁者莪，在彼中阿。既见君子，乐且有仪。 菁菁者莪，在彼中沚。既见君子，我心则喜。 菁菁者莪，在彼中陵。既见君子，锡我百朋。 泛泛杨舟，载沉载浮。既见君子，我心则休。"));
         // 获取词元位置属性
         OffsetAttribute offset = ts.addAttribute(OffsetAttribute.class);
         // 获取词元文本属性

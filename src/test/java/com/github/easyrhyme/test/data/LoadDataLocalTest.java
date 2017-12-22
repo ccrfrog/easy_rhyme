@@ -63,7 +63,7 @@ public class LoadDataLocalTest {
         
         for (String word : words) {
             RhymeWord rw = RhymeWordUtils.getRhymeWordFromLexeme(word);
-            int inserted = rhymeWordDao.upsert(rw, TableNameUtils.getTableName(rw));
+            int inserted = rhymeWordDao.upsert(rw, "rhyme_word");
             logger.info("rhymeWordDao.upsert, word={}, inserted={}", rw.toString(), inserted);
         }
         
