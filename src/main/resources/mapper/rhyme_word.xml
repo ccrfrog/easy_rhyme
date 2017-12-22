@@ -23,6 +23,39 @@
             <foreach collection="firsts" item="item" index="index" open="(" separator="," close=")">
                 #{item}
             </foreach>
+        and lexeme != #{orig}
+        order by freq desc, id limit #{limit} offset #{offset};
+    </select>
+
+    <select id="queryDouble" resultType="RhymeWord">
+        select <include refid="selectColumns"/>
+        from rhyme_word where first in
+            <foreach collection="firsts" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+            and second in
+            <foreach collection="seconds" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+            and lexeme != #{orig}     
+        order by freq desc, id limit #{limit} offset #{offset};
+    </select>
+    
+    <select id="queryMulti" resultType="RhymeWord">
+        select <include refid="selectColumns"/>
+        from rhyme_word where first in
+            <foreach collection="firsts" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+            and second in
+            <foreach collection="seconds" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+            and third in
+            <foreach collection="thirds" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>            
+            and lexeme != #{orig}
         order by freq desc, id limit #{limit} offset #{offset};
     </select>
 

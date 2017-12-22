@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,9 +24,21 @@ public class RhymeQueryServiceTest {
     @Resource
     private RhymeQueryService sut;
 
-    @Test
+    @Test @Ignore
     public void test() throws Exception {
-        List<RhymeWord> words = sut.singleQuery("中间", 10, 0);
+        List<RhymeWord> words = sut.singleQuery("永远", 10, 0);
+        System.out.println(words);
+    }
+    
+    @Test @Ignore
+    public void testQueryDouble() throws Exception {
+        List<RhymeWord> words = sut.doubleQuery("夏天", 10, 0);
+        System.out.println(words);
+    }
+    
+    @Test 
+    public void testMulti() throws Exception {
+        List<RhymeWord> words = sut.multiQuery("天线院", 10, 0);
         System.out.println(words);
     }
 

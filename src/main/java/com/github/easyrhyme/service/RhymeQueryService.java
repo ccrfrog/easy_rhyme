@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ResourceLoaderAware;
@@ -20,7 +21,7 @@ import org.springframework.stereotype.Service;
 import com.github.easyrhyme.bean.RhymeWord;
 import com.github.easyrhyme.dao.RhymeWordDao;
 import com.github.easyrhyme.util.RhymeWordUtils;
-import com.github.easyrhyme.util.TableNameUtils;
+import com.github.stuxuhai.jpinyin.PinyinException;
 import com.github.stuxuhai.jpinyin.PinyinFormat;
 import com.github.stuxuhai.jpinyin.PinyinHelper;
 import com.google.common.base.Preconditions;
@@ -68,9 +69,6 @@ public class RhymeQueryService implements ResourceLoaderAware {
 
     /**
      * 单韵 查询
-     * 1 求 韵母
-     * 2 得到 rhymeCluster
-     * 3 sql 查询按freq 排序输出
      * */
     public List<RhymeWord> singleQuery(String q, int limit, int offset) throws Exception {
         String keyVowel = getKeyVowel(q);
@@ -81,7 +79,7 @@ public class RhymeQueryService implements ResourceLoaderAware {
             return Lists.newArrayList();
         }
         
-        List<RhymeWord> words = rhymeWordDao.querySingle(cluster, limit, offset);
+        List<RhymeWord> words = rhymeWordDao.querySingle(cluster, limit, offset, q);
         return words;
     }
 
@@ -95,6 +93,56 @@ public class RhymeQueryService implements ResourceLoaderAware {
     @Override
     public void setResourceLoader(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
+    }
+
+    /**
+     * 单韵 查询
+     * 1 求 倒数两个字的 韵母
+     * 3 sql 查询按freq 排序输出
+     * */
+    public List<RhymeWord> doubleQuery(String q, int limit, int offset) throws Exception {
+        Pair<String, String> pair = getKeyVowelPair(q);
+        List<String> firsts = rhymeMapping.get(pair.getLeft());
+        List<String> seconds = rhymeMapping.get(pair.getRight());
+        
+        List<RhymeWord> words = rhymeWordDao.queryDouble(firsts, seconds, limit, offset, q);
+        return words;
+    }
+
+    private Pair<String, String> getKeyVowelPair(String q) throws Exception {
+        Preconditions.checkArgument(q.length() > 1, "双韵查询词长度必须大于1");
+        String pinyin = PinyinHelper.convertToPinyinString(q, ",", PinyinFormat.WITHOUT_TONE);
+        String[] pys = StringUtils.split(pinyin, SEP);
+        String last = pys[pys.length - 1];
+        String secondLast = pys[pys.length - 2];
+        return Pair.of(RhymeWordUtils.getVowel(last), RhymeWordUtils.getVowel(secondLast));
+    }
+
+    /**
+     * 多韵(3个及以上) 查询
+     * */
+    public List<RhymeWord> multiQuery(String q, int limit, int offset) throws Exception {
+        List<String> vowels = getKeyVowels(q, 3);
+        List<String> firsts = rhymeMapping.get(vowels.get(0));
+        List<String> seconds = rhymeMapping.get(vowels.get(1));
+        List<String> thirds = rhymeMapping.get(vowels.get(2));
+        
+        List<RhymeWord> words = rhymeWordDao.queryMulti(firsts, seconds, thirds, limit, offset, q);
+        return words;
+    }
+
+    private List<String> getKeyVowels(String q, int number) throws Exception {
+        Preconditions.checkArgument(q.length() >= number, "多韵查询词长度必须大于等于参数 number");
+        List<String> r = Lists.newArrayList();
+        
+        String pinyin = PinyinHelper.convertToPinyinString(q, ",", PinyinFormat.WITHOUT_TONE);
+        String[] pys = StringUtils.split(pinyin, SEP);
+        
+        for (int i = 1; i <= number; i++) {
+            String py = pys[pys.length - i];
+            r.add(RhymeWordUtils.getVowel(py));
+        }
+        return r;
     }
 
 }

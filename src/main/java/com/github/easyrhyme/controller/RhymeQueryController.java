@@ -44,10 +44,29 @@ public class RhymeQueryController extends AbstractController {
     }
     
     @ResponseBody
-    @RequestMapping("/multi.json")
-    public Map<String, Object> multiQuery(@RequestParam("q") String q) {
+    @RequestMapping("/double.json")
+    public Map<String, Object> doubleQuery(@RequestParam("q") String q,
+            @RequestParam(value = "limit", defaultValue = "30") int limit,
+            @RequestParam(value = "offset", defaultValue = "0") int offset) throws Exception {
+        logger.info("doubleQuery, q={}, limit={}, offset={}", q, limit, offset);
+        Preconditions.checkArgument(limit <= 100, "limit 必须小于100");
+        Preconditions.checkArgument(q.length() >= 2, "查询词长度必须大于1");
         
-        return null;
+        List<RhymeWordVo> vos = convertToVo(rhymeQueryService.doubleQuery(q, limit, offset));
+        return dataJson(vos);
+    }    
+    
+    @ResponseBody
+    @RequestMapping("/multi.json")
+    public Map<String, Object> multiQuery(@RequestParam("q") String q,
+            @RequestParam(value = "limit", defaultValue = "30") int limit,
+            @RequestParam(value = "offset", defaultValue = "0") int offset) throws Exception {
+        logger.info("multiQuery, q={}, limit={}, offset={}", q, limit, offset);
+        Preconditions.checkArgument(limit <= 100, "limit 必须小于100");
+        Preconditions.checkArgument(q.length() >= 3, "查询词长度必须大于2");
+        
+        List<RhymeWordVo> vos = convertToVo(rhymeQueryService.multiQuery(q, limit, offset));
+        return dataJson(vos);
     }
     
     private List<RhymeWordVo> convertToVo(List<RhymeWord> words) {

@@ -20,8 +20,21 @@ public interface RhymeWordDao {
      * 单韵查询
      * */
     public List<RhymeWord> querySingle(@Param("firsts") List<String> firsts, 
-            @Param("limit") int limit, @Param("offset") int offset);
-    
+            @Param("limit") int limit, @Param("offset") int offset, @Param("orig") String orig);
+
+    /**
+     * 双韵查询
+     * */
+    public List<RhymeWord> queryDouble(@Param("firsts") List<String> firsts, @Param("seconds") List<String> seconds, 
+            @Param("limit") int limit, @Param("offset") int offset, @Param("orig") String orig);
+
+
+    /**
+     * 多韵
+     * */
+    public List<RhymeWord> queryMulti(@Param("firsts") List<String> firsts, @Param("seconds") List<String> seconds,
+            @Param("thirds") List<String> thirds,
+            @Param("limit") int limit, @Param("offset") int offset, @Param("orig") String orig);    
     
     
     
