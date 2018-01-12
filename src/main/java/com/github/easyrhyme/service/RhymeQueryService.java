@@ -21,7 +21,6 @@ import org.springframework.stereotype.Service;
 import com.github.easyrhyme.bean.RhymeWord;
 import com.github.easyrhyme.dao.RhymeWordDao;
 import com.github.easyrhyme.util.RhymeWordUtils;
-import com.github.stuxuhai.jpinyin.PinyinException;
 import com.github.stuxuhai.jpinyin.PinyinFormat;
 import com.github.stuxuhai.jpinyin.PinyinHelper;
 import com.google.common.base.Preconditions;
